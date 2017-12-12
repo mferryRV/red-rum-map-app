@@ -1,0 +1,44 @@
+<html>
+	<head>
+		<title>RED RUM: Finding a Room can be MUЯᗡƎЯ</title>
+		<link rel="stylesheet" type="text/css" href="./styles.css">
+		</style>
+	</head>
+	<body>
+		<div class="title" align="center"> RED RUM</div>
+		<div class="dropdown floor">
+		  <button onclick="toggleDropdown()" class="dropbtn">Select Floor</button>
+		  <div id="myDropdown"	 class="dropdown-content">
+		  	<!-- Note that these options are referenced in the Javascript! Change that if we move to multiple dropdowns. -->
+			  <a id= "rv1_1" class="dropdown-option">RV1 First Floor</a>
+			  <a id= "rv1_2" class="dropdown-option">RV1 Second Floor</a>
+			  <a id= "rv2_1" class="dropdown-option">RV2 First Floor</a>
+			  <a id= "rv2_2" class="dropdown-option">RV2 Second Floor</a>
+			  <a id= "rv3_0b" class="dropdown-option">RV3 Basement</a>
+			  <a id= "rv3_0g" class="dropdown-option">RV3 Ground Floor</a>
+			  <a id= "rv3_1" class="dropdown-option">RV3 First Floor</a>
+			  <a id= "rv3_2" class="dropdown-option">RV3 Second Floor</a>
+			  <a id= "rv3_3" class="dropdown-option">RV3 Third Floor</a>
+			  <a id= "rv4_1" class="dropdown-option">RV4 First Floor</a>
+			  <a id= "rv4_2" class="dropdown-option">RV4 Second Floor</a>
+			  <a id= "rv5_1" class="dropdown-option">RV5 First Floor</a>
+			  <a id= "rv5_2" class="dropdown-option">RV5 Second Floor</a>
+			  <a id= "rv5_3" class="dropdown-option">RV5 Third Floor</a>
+			  <a id= "rv5_4" class="dropdown-option">RV5 Fourth Floor</a>
+			  <a id= "rv5_5" class="dropdown-option">RV5 Fifth Floor</a>
+			  <a id= "rv5_6" class="dropdown-option">RV5 Sixth Floor</a>
+			  <a id= "rv6_1" class="dropdown-option">RV6 First Floor</a>
+			  <a id= "rv6_2" class="dropdown-option">RV6 Second Floor</a>
+		  </div>
+		</div>
+		<p align="center"> Stop wasting time looking for meeting rooms. Click the map to create a shareable location URL. </br></p>
+		<input id="share" name="Share Location URL" value="url here" style="width:1200;background-color:pink" align="center">
+		<img id="mapImage" src="./img/rv1_1.jpg" onclick="mapClick(event)">
+		<!-- Marker made by Gregor Cresnar (https://www.flaticon.com/authors/gregor-cresnar) from www.flaticon.com -->
+		<img id="marker" src="./img/star2.png" onclick="mapClick(event)">
+		<script src="./main.js"></script>
+	</body>
+	<footer>
+		
+	</footer>
+</html>
