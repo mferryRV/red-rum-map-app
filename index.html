@@ -38,16 +38,16 @@
 		<img id="marker" src="./img/star2.png" onclick="mapClick(event)">
 		<script src="./main.js"></script>
 		<!-- Room Search V1 -->
-		<div id="search-container" style="background-color:pink;" onfocusin="showRooms()" onfocusout="hideRooms()">
+		<div id="search-container" onfocusin="showRooms()" onfocusout="hideRooms()">
 			<p>Search: </p>
 			<input id="search" style="width:300px"type="text" oninput="searchRooms(this.value)">
-			<button id="room-locator" onclick="startRoomLocator()">
+			<button id="room-locator" onclick="startRoomLocator()" style="display:none;">
 				Set Locations
 			</button>
 			<button id="room-logger" onclick="logRoomLocations()" style="display:none;">
 				Log Locations
 			</button>
-			<p id="demo"></p>
+			<p id="demo">Select a room by clicking the text:</p>
 			<ol id="demo-2"><!-- class="no-show" --> 
 			</ol>
 			<script src="./searchRooms2.js"></script>

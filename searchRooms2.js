@@ -27,6 +27,8 @@ function selectRoom(selection) {
 		changeImgSrc(room.floorId);
 		// Set the marker
 		setMarker(room);
+		// Update the URL
+		updateSharedURL('clear', {"id": room.floorId, "x": room.x, "y": room.y});
 }
 
 function hideRooms() {
