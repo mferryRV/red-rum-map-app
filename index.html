@@ -5,7 +5,6 @@
 		</style>
 	</head>
 	<body>
-		<META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
 		<div class="title" align="center"> RED RUM</div>
 		<div class="dropdown floor">
 		  <button onclick="toggleDropdown()" class="dropbtn">Select Floor</button>
@@ -38,6 +37,22 @@
 		<!-- Marker made by Gregor Cresnar (https://www.flaticon.com/authors/gregor-cresnar) from www.flaticon.com -->
 		<img id="marker" src="./img/star2.png" onclick="mapClick(event)">
 		<script src="./main.js"></script>
+		<!-- Room Search V1 -->
+		<div id="search-container" style="background-color:pink;" onfocusin="showRooms()" onfocusout="hideRooms()">
+			<p>Search: </p>
+			<input id="search" style="width:300px"type="text" oninput="searchRooms(this.value)">
+			<button id="room-locator" onclick="startRoomLocator()">
+				Set Locations
+			</button>
+			<button id="room-logger" onclick="logRoomLocations()" style="display:none;">
+				Log Locations
+			</button>
+			<p id="demo"></p>
+			<ol id="demo-2"><!-- class="no-show" --> 
+			</ol>
+			<script src="./searchRooms2.js"></script>
+		</div>
+		<p></br></br></br></br></br></br></p>
 	</body>
 	<footer>
 		
