@@ -5,7 +5,7 @@ var dropdownOptions =  document.getElementsByClassName("dropdown-option");
 changeFromURL(dropdownOptions);
 
 // Initialize Shared URL
-createSharedURL();
+// createSharedURL();
 
 // Add event handlers to dropdown menu
 handleDropdown(dropdownOptions);
@@ -146,4 +146,137 @@ function handleDropdown(dropdownOptions) {
 }
 
 
+var MapElements = {
+	Map: {
+		src: '/img/rv1_1.png',
+		size: [1600, 1151],
+		position: [0, 0],
+		drawnImage: null
+	},
+	Star: {
+		src: '/img/star.svg',
+		size: [64, 64],
+		position: [0, 0],
+		drawnImage: null
+	}
+}
 
+var rvmap = MapElements.Map;
+var mapStar = MapElements.Star;
+
+var canvas = null;
+var ctx = null;
+var siteMap = null;
+
+function intialDraw() {
+
+	function createMap() {
+
+		rvmap.drawnImage = new Image(rvmap.size[0], rvmap.size[1]);
+
+		rvmap.drawnImage.onload = function() {
+			canvas.width = rvmap.size[0];
+			canvas.height = rvmap.size[1];
+	
+			ctx.drawImage(rvmap.drawnImage, rvmap.position[0], rvmap.position[0], rvmap.size[0], rvmap.size[1]);
+
+			mapStar.drawnImage = new Image(mapStar.size[0], mapStar.size[1]);
+			mapStar.position = mapStar.position.toString();
+			mapStar.onload = function() {
+				ctx.drawImage(mapStar.drawnImage, mapStar.position[0], mapStar.position[1]);
+			}
+			mapStar.drawnImage.src = mapStar.src;
+			siteMap = mapStar.drawnImage;
+		};
+	
+		rvmap.drawnImage.src = rvmap.src;
+	}
+
+	createMap();
+}
+
+function animate() {
+	requestAnimationFrame(animate);
+	draw();
+}
+
+function draw() {
+	ctx.clearRect(0,0, canvas.width, canvas.height);
+	canvas.width = rvmap.size[0];
+	canvas.height = rvmap.size[1];
+
+	if (typeof rvmap.drawnImage === 'object') {
+		rvmap.drawnImage.position = rvmap.position.toString();
+		ctx.drawImage(rvmap.drawnImage, rvmap.position[0], rvmap.position[0], rvmap.size[0], rvmap.size[1]);
+	}
+
+	if (typeof siteMap === 'object') {
+		siteMap.position = mapStar.position.toString();
+		ctx.drawImage(siteMap, mapStar.position[0], mapStar.position[1]);
+	}
+}
+
+canvas = document.getElementById('canvas');
+ctx = canvas.getContext('2d');
+ctx.mozImageSmoothingEnabled = false;
+ctx.webkitImageSmoothingEnabled = false;
+ctx.msImageSmoothingEnabled = false;
+ctx.imageSmoothingEnabled = false;
+
+// Map as Canvas element
+intialDraw();
+
+// animate();
+
+HTMLCanvasElement.prototype.relMouseCoords = function (event) {
+    var totalOffsetX = 0;
+    var totalOffsetY = 0;
+    var canvasX = 0;
+    var canvasY = 0;
+    var currentElement = this;
+
+    do {
+        totalOffsetX += currentElement.offsetLeft;
+        totalOffsetY += currentElement.offsetTop;
+    }
+    while (currentElement = currentElement.offsetParent)
+
+    canvasX = event.pageX - totalOffsetX;
+    canvasY = event.pageY - totalOffsetY;
+
+    // Fix for variable canvas width
+    canvasX = Math.round( canvasX * (this.width / this.offsetWidth) );
+	canvasY = Math.round( canvasY * (this.height / this.offsetHeight) );
+	
+	var withofScrollbar = 33;
+
+    return [canvasX - withofScrollbar, canvasY - withofScrollbar]
+}
+
+canvas.addEventListener('click', function(event) {
+	MapElements.Star.position = canvas.relMouseCoords(event);
+	draw();
+
+	var CanShareLink = true;
+
+	if (CanShareLink) {
+		var sharelink = document.querySelector('.copy-to-clipboard');
+		var range = document.createRange();  
+		range.selectNode(sharelink);
+		window.getSelection().addRange(range);  
+	
+		try {  
+			var successful = document.execCommand('copy');  
+			var msg = successful ? 'successful' : 'unsuccessful';  
+			console.log('Copy email command was ' + msg);  
+		} catch(err) {  
+			console.log('Oops, unable to copy');  
+		}  
+	
+		// Remove the selections - NOTE: Should use
+		// removeRange(range) when it is supported  
+		window.getSelection().removeAllRanges();  
+
+	}
+
+});
