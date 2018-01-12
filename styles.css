@@ -82,6 +82,33 @@
 	line-height: 1.5;
 }
 
+.notification {
+	position: fixed;
+	z-index: 1;
+	top: 0;
+	width: 100%;
+	line-height: 2;
+	font-size: large;
+	background: green;
+	color: white;
+	padding-left: 10px;
+	opacity: 0;
+	transition: .3s opacity linear;
+	cursor: pointer;
+}
+
+.notification:after {
+	content: '❌';
+	color: black;
+	right: 20px;
+	display: inline-block;
+	position: absolute;
+}
+
+.notification.is-visible {
+	opacity: 1;
+}
+
 .aside {
 	position: fixed;
 	width: 100%;
@@ -92,11 +119,6 @@
 .aside.search {
 	top: 0;
 	border-bottom: 2px solid #333;
-}
-
-.aside.share {
-	bottom: 0;
-	border-top: 2px solid #333;
 }
 
 .search-container {
@@ -143,8 +165,4 @@
 
 .bgc-pink {
 	background-color: pink;
-}
-
-.copy-to-clipboard {
-	display: none;
 }

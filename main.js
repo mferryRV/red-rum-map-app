@@ -63,51 +63,6 @@ function changeFromDropdown(id) {
 
 /* Handle map markers & sharing URL */
 
-// Add marker when the map is clicked
-function mapClick(e) {
-	var clickLocation = {"x": e.pageX, "y": e.pageY};
-	// Set a marker at the click location
-  setMarker(clickLocation);
-  // Update the sharing URL with the click location
-  updateSharedURL("upsert", clickLocation);
-}
-
-function setMarker(clickLocation) {
-	with(document.getElementById('marker'))
-  {
-    style.left = clickLocation.x;
-    style.top = clickLocation.y;
-    style.display = 'block';
-  }
-}
-
-function clearMarker() {
-	with(document.getElementById('marker'))
-	{
-		style.display = 'none';
-	}
-}
-
-function createSharedURL() {
-		// Iterate through the existing parameters, append them to a shareable URL
-		var shareUrl = Object.keys(document.params).reduce(function(url, parameter) {
-				return url + (url.indexOf('?') === -1 ? '?' : '&') + parameter + "=" + document.params[parameter]
-		},document.location.href.split('?')[0]);
-		document.getElementById('share').value = shareUrl;
-}
-
-function updateSharedURL(type, locationObj) {
-		// Edit the document.params object to store current location
-		if (type === 'clear') {
-				document.params = locationObj;
-		} else if (type === 'upsert') {
-				Object.keys(locationObj).forEach(function(key) {
-					document.params[key] = locationObj[key];
-				})
-		}
-		createSharedURL();
-}
-
 /* Handle dropdown menu functionality  */
 
 // When the user clicks on the button, toggle between hiding and showing the dropdown content 
@@ -145,6 +100,9 @@ function handleDropdown(dropdownOptions) {
 	});
 }
 
+import Messages from '/modules/messages.js';
+import Notify from '/modules/notify.js';
+import copyToClipboard from '/modules/clipboard.js'
 
 var MapElements = {
 	Map: {
@@ -156,6 +114,7 @@ var MapElements = {
 	Star: {
 		src: '/img/star.svg',
 		size: [64, 64],
+		radius: 32,
 		position: [0, 0],
 		drawnImage: null
 	}
@@ -195,11 +154,6 @@ function intialDraw() {
 	createMap();
 }
 
-function animate() {
-	requestAnimationFrame(animate);
-	draw();
-}
-
 function draw() {
 	ctx.clearRect(0,0, canvas.width, canvas.height);
 	canvas.width = rvmap.size[0];
@@ -226,8 +180,6 @@ ctx.imageSmoothingEnabled = false;
 // Map as Canvas element
 intialDraw();
 
-// animate();
-
 HTMLCanvasElement.prototype.relMouseCoords = function (event) {
     var totalOffsetX = 0;
     var totalOffsetY = 0;
@@ -248,35 +200,26 @@ HTMLCanvasElement.prototype.relMouseCoords = function (event) {
     canvasX = Math.round( canvasX * (this.width / this.offsetWidth) );
 	canvasY = Math.round( canvasY * (this.height / this.offsetHeight) );
 	
-	var withofScrollbar = 33;
+	var starRadius = MapElements.Star.radius; // radius of star icon
 
-    return [canvasX - withofScrollbar, canvasY - withofScrollbar]
+    return [canvasX - starRadius, canvasY - starRadius]
 }
 
 canvas.addEventListener('click', function(event) {
 	MapElements.Star.position = canvas.relMouseCoords(event);
 	draw();
 
+	// if star position is near room in lookup table
+	// then return room number and name
+	// then create link
+	// update history state
+
 	var CanShareLink = true;
 
 	if (CanShareLink) {
-		var sharelink = document.querySelector('.copy-to-clipboard');
-		var range = document.createRange();  
-		range.selectNode(sharelink);
-		window.getSelection().addRange(range);  
-	
-		try {  
-			var successful = document.execCommand('copy');  
-			var msg = successful ? 'successful' : 'unsuccessful';  
-			console.log('Copy email command was ' + msg);  
-		} catch(err) {  
-			console.log('Oops, unable to copy');  
-		}  
-	
-		// Remove the selections - NOTE: Should use
-		// removeRange(range) when it is supported  
-		window.getSelection().removeAllRanges();  
-
+		copyToClipboard('https://campusmap.rvapps.io/?room=3110')
+		// Send Notification
+		Notify(Messages.COPY_EVENT);
 	}
 
 });

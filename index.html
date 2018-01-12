@@ -4,6 +4,7 @@
 		<link rel="stylesheet" type="text/css" href="./styles.css">
 	</head>
 	<body class="map-app">
+		<header class="notification"></header>
 		<aside class="aside search">
 				<div class="title" align="center"> RED RUM</div>
 				<!-- Room Search V1 -->
@@ -47,13 +48,8 @@
 				</div>
 		</aside>
 		<canvas class="map-canvas" id="canvas"></canvas>
-		<aside class="aside share">
-			<label align="center">Share Location URL</label>
-			<input id="share"  placeholder="Stop wasting time looking for meeting rooms. Click the map to create a shareable location URL." class="map-input bgc-pink" name="Share Location URL" align="center">
-		</aside>
 		<!-- Marker made by Gregor Cresnar (https://www.flaticon.com/authors/gregor-cresnar) from www.flaticon.com -->
 		<img id="marker" src="./img/star2.png" onclick="mapClick(event)">
-		<a id="copy-to-clipboard" class="copy-to-clipboard">https://campusmap.rvapps.io/?room=3110</a>
-		<script src="./main.js"></script>
+		<script type="module" src="./main.js"></script>
 	</body>
 </html>
