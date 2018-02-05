@@ -5,7 +5,7 @@ var dropdownOptions =  document.getElementsByClassName("dropdown-option");
 changeFromURL(dropdownOptions);
 
 // Initialize Shared URL
-createSharedURL();
+// createSharedURL();
 
 // Add event handlers to dropdown menu
 handleDropdown(dropdownOptions);
@@ -63,51 +63,6 @@ function changeFromDropdown(id) {
 
 /* Handle map markers & sharing URL */
 
-// Add marker when the map is clicked
-function mapClick(e) {
-	var clickLocation = {"x": e.pageX, "y": e.pageY};
-	// Set a marker at the click location
-  setMarker(clickLocation);
-  // Update the sharing URL with the click location
-  updateSharedURL("upsert", clickLocation);
-}
-
-function setMarker(clickLocation) {
-	with(document.getElementById('marker'))
-  {
-    style.left = clickLocation.x;
-    style.top = clickLocation.y;
-    style.display = 'block';
-  }
-}
-
-function clearMarker() {
-	with(document.getElementById('marker'))
-	{
-		style.display = 'none';
-	}
-}
-
-function createSharedURL() {
-		// Iterate through the existing parameters, append them to a shareable URL
-		var shareUrl = Object.keys(document.params).reduce(function(url, parameter) {
-				return url + (url.indexOf('?') === -1 ? '?' : '&') + parameter + "=" + document.params[parameter]
-		},document.location.href.split('?')[0]);
-		document.getElementById('share').value = shareUrl;
-}
-
-function updateSharedURL(type, locationObj) {
-		// Edit the document.params object to store current location
-		if (type === 'clear') {
-				document.params = locationObj;
-		} else if (type === 'upsert') {
-				Object.keys(locationObj).forEach(function(key) {
-					document.params[key] = locationObj[key];
-				})
-		}
-		createSharedURL();
-}
-
 /* Handle dropdown menu functionality  */
 
 // When the user clicks on the button, toggle between hiding and showing the dropdown content 
@@ -145,5 +100,126 @@ function handleDropdown(dropdownOptions) {
 	});
 }
 
+import Messages from '/modules/messages.js';
+import Notify from '/modules/notify.js';
+import copyToClipboard from '/modules/clipboard.js'
 
+var MapElements = {
+	Map: {
+		src: '/img/rv1_1.png',
+		size: [1600, 1151],
+		position: [0, 0],
+		drawnImage: null
+	},
+	Star: {
+		src: '/img/star.svg',
+		size: [64, 64],
+		radius: 32,
+		position: [0, 0],
+		drawnImage: null
+	}
+}
 
+var rvmap = MapElements.Map;
+var mapStar = MapElements.Star;
+
+var canvas = null;
+var ctx = null;
+var siteMap = null;
+
+function intialDraw() {
+
+	function createMap() {
+
+		rvmap.drawnImage = new Image(rvmap.size[0], rvmap.size[1]);
+
+		rvmap.drawnImage.onload = function() {
+			canvas.width = rvmap.size[0];
+			canvas.height = rvmap.size[1];
+	
+			ctx.drawImage(rvmap.drawnImage, rvmap.position[0], rvmap.position[0], rvmap.size[0], rvmap.size[1]);
+
+			mapStar.drawnImage = new Image(mapStar.size[0], mapStar.size[1]);
+			mapStar.position = mapStar.position.toString();
+			mapStar.onload = function() {
+				ctx.drawImage(mapStar.drawnImage, mapStar.position[0], mapStar.position[1]);
+			}
+			mapStar.drawnImage.src = mapStar.src;
+			siteMap = mapStar.drawnImage;
+		};
+	
+		rvmap.drawnImage.src = rvmap.src;
+	}
+
+	createMap();
+}
+
+function draw() {
+	ctx.clearRect(0,0, canvas.width, canvas.height);
+	canvas.width = rvmap.size[0];
+	canvas.height = rvmap.size[1];
+
+	if (typeof rvmap.drawnImage === 'object') {
+		rvmap.drawnImage.position = rvmap.position.toString();
+		ctx.drawImage(rvmap.drawnImage, rvmap.position[0], rvmap.position[0], rvmap.size[0], rvmap.size[1]);
+	}
+
+	if (typeof siteMap === 'object') {
+		siteMap.position = mapStar.position.toString();
+		ctx.drawImage(siteMap, mapStar.position[0], mapStar.position[1]);
+	}
+}
+
+canvas = document.getElementById('canvas');
+ctx = canvas.getContext('2d');
+ctx.mozImageSmoothingEnabled = false;
+ctx.webkitImageSmoothingEnabled = false;
+ctx.msImageSmoothingEnabled = false;
+ctx.imageSmoothingEnabled = false;
+
+// Map as Canvas element
+intialDraw();
+
+HTMLCanvasElement.prototype.relMouseCoords = function (event) {
+    var totalOffsetX = 0;
+    var totalOffsetY = 0;
+    var canvasX = 0;
+    var canvasY = 0;
+    var currentElement = this;
+
+    do {
+        totalOffsetX += currentElement.offsetLeft;
+        totalOffsetY += currentElement.offsetTop;
+    }
+    while (currentElement = currentElement.offsetParent)
+
+    canvasX = event.pageX - totalOffsetX;
+    canvasY = event.pageY - totalOffsetY;
+
+    // Fix for variable canvas width
+    canvasX = Math.round( canvasX * (this.width / this.offsetWidth) );
+	canvasY = Math.round( canvasY * (this.height / this.offsetHeight) );
+	
+	var starRadius = MapElements.Star.radius; // radius of star icon
+
+    return [canvasX - starRadius, canvasY - starRadius]
+}
+
+canvas.addEventListener('click', function(event) {
+	MapElements.Star.position = canvas.relMouseCoords(event);
+	draw();
+
+	// if star position is near room in lookup table
+	// then return room number and name
+	// then create link
+	// update history state
+
+	var CanShareLink = true;
+
+	if (CanShareLink) {
+		copyToClipboard('https://campusmap.rvapps.io/?room=3110')
+		// Send Notification
+		Notify(Messages.COPY_EVENT);
+	}
+
+});

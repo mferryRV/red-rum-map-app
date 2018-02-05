@@ -69,3 +69,100 @@
 #title {
     text-align: center;
 }
+
+
+* {
+	box-sizing: border-box;
+}
+
+.map-app {
+	margin: auto 0;
+	font-size: 100%;
+	font-family: sans-serif;
+	line-height: 1.5;
+}
+
+.notification {
+	position: fixed;
+	z-index: 1;
+	top: 0;
+	width: 100%;
+	line-height: 2;
+	font-size: large;
+	background: green;
+	color: white;
+	padding-left: 10px;
+	opacity: 0;
+	transition: .3s opacity linear;
+	cursor: pointer;
+}
+
+.notification:after {
+	content: '❌';
+	color: black;
+	right: 20px;
+	display: inline-block;
+	position: absolute;
+}
+
+.notification.is-visible {
+	opacity: 1;
+}
+
+.aside {
+	position: fixed;
+	width: 100%;
+	padding: 10px;
+	background: #fff;
+}
+
+.aside.search {
+	top: 0;
+	border-bottom: 2px solid #333;
+}
+
+.search-container {
+	background: #fff;
+}
+
+.search-results {
+	position: absolute;
+	top: 75px;
+	left: 0;
+	z-index: 1;
+	background: #fff;
+	width: 100%;
+}
+
+.search-results li {
+	line-height: 2;
+	padding-left: 1%;
+}
+
+.dropdown.floor {
+	position: absolute;
+	top: 150px;
+}
+
+.search-results li:nth-child(2n+1) {
+	background: #f2f2f2;
+}
+
+.map-canvas {
+	width: 100%;
+	margin-top: 12%;
+	height: auto;
+}
+
+.map-input {
+	width: 100%;
+	border: 0;
+	border-bottom: 1px solid #333;
+	line-height: 2;
+	padding-left: 5px;
+	font-size: large;
+}
+
+.bgc-pink {
+	background-color: pink;
+}
