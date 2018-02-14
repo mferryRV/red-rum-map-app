@@ -22,14 +22,11 @@
 				</ul>
 			</div>
 			<script src="./searchRooms2.js"></script>
-		</div>
-
-		<p> Click the map to create a shareable location URL. </br></p>
-
-		
-		<div class="row">
-			<div class="column-left">
+		</div>		
+		<div class="grid">
+			<div class="column">
 				<div class="dropdown floor">
+					
 					<button onclick="toggleDropdown()" class="dropbtn">Select Floor</button>
 					<div id="myDropdown"	 class="dropdown-content">
 						<!-- Note that these options are referenced in the Javascript! Change that if we move to multiple dropdowns. -->
@@ -55,9 +52,15 @@
 					</div>
 				</div>
 			</div>
+			<div class="column">
+				<p> Click the map to create a shareable location URL. </br></p>
+			</div>
+			<div class="column">
+				<input id="share" name="Share Location URL" value="url here" class="share-url">
+			</div>
 		</div>
 		
-		<input id="share" name="Share Location URL" value="url here" style="width:1200;background-color:pink" align="center">
+		
 		<div class="map">
 			<img id="marker" src="./img/star2.png" onclick="mapClick(event)">
 			<img id="mapImage" src="./img/rv1_1.jpg" onclick="mapClick(event)">
