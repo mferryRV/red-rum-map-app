@@ -4,18 +4,30 @@ document.rooms = [{"id":"1110","displayName":"Honesty","fullName":"1110 - Honest
 function searchRooms(query) {
 		query = query.toString().toLowerCase().replace(/\W/g,"");
 
-		var results = document.rooms.filter(function (room, index) {
-				// Save the room index for easy selection
-				room.index = index;
-    		return room.search.match(query);
-    })
+		if(query.length) {
+			var results = document.rooms.filter(function (room, index) {
+					// Save the room index for easy selection
+					room.index = index;
+					return room.search.match(query);
+			})
 
-		// Try making HTML elements
-		document.getElementById("demo-2").innerHTML = results.map( function (result) {
-				return "<li id='room-"+result.index+"' onclick='selectRoom(this)'> "+result.fullName+"</li>"
-		}).reduce(function(all,li) {
-				return all + li
-		},"");
+			if(results.length) {
+				// Try making HTML elements
+				document.getElementById("demo-2").innerHTML = results.map( function (result) {
+						return "<li id='room-"+result.index+"' onclick='selectRoom(this)'> "+result.fullName+"</li>"
+				}).reduce(function(all,li) {
+						return all + li
+				},"");
+			} else {
+				console.log('asdfasdf', document.getElementById("demo-2"));
+				document.getElementById("demo-2").innerHTML = '<li class="caution">No Results Found</li>';
+			}
+
+			document.getElementById('results').classList.add('active');
+		} else {
+			document.getElementById('results').classList.remove('active');
+		}
+		
 }
 
 function selectRoom(selection) {
