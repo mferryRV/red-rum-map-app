@@ -1,3 +1,16 @@
+* {
+    box-sizing: border-box;
+}
+
+html, body {
+    margin: 0;
+    padding:0;
+}
+
+body { 
+    /* font-family: 'Roboto', sans-serif; */
+    font-family: 'Open Sans', sans-serif;
+}
 /* Dropdown Button */
 .dropbtn {
     background-color: #4CAF50;
@@ -66,6 +79,56 @@
         }
 }
 
-#title {
+.title {
     text-align: center;
+    font-family: 'Hanalei Fill', cursive;
+    font-size: 92px;
+}
+
+.subtitle { 
+    font-family: 'Open Sans';
+    font-style: italic;
+    font-size: 24px;
+}
+
+.results {
+    display: none;
+    position: absolute;
+    background: #fefefe;
+    box-shadow: 0px 1px 1px 0px #555555;
+    width: 600px;
+}
+
+.results.active {
+    display: block;
+}
+
+.results ul {
+    list-style-type: none;
+    padding-left: 0;
+}
+
+.results li {
+    padding: 5px;
+}
+
+.results li:hover {
+    background: #e4e4e4;
+}
+
+.searchbox {
+    width: 600px;
+    font-size: 18px;
+    padding: 14px 10px;
+}
+
+.search-container {
+    width: 600px; 
+    margin: 0 auto;
+}
+
+.map {
+    width: 1200px;
+    margin: 0 auto;
+    position: relative;
 }
