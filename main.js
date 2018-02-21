@@ -76,8 +76,8 @@ function mapClick(e) {
 function setMarker(clickLocation) {
 	with(document.getElementById('marker'))
   {
-    style.left = clickLocation.x;
-    style.top = clickLocation.y;
+    style.left = clickLocation.x - 70;
+    style.top = clickLocation.y - 300;
     style.display = 'block';
   }
 }
