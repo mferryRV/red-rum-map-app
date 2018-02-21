@@ -100,7 +100,7 @@ function createSharedURL() {
 		} catch(e) {
 			console.log(e);
 		}
-		dataLayer.push({'event': 'locationUpdated', 'location': document.params);
+		dataLayer.push({'event': 'locationUpdated', 'location': document.params});
 }
 
 function updateSharedURL(type, locationObj) {
