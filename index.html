@@ -1,6 +1,7 @@
 <html>
 	<head>
 		<title>RED RUM: Finding a Room can be MUЯᗡƎЯ</title>
+		<link href="https://fonts.googleapis.com/css?family=Hanalei+Fill|Open+Sans:400,700,700i,800,800i" rel="stylesheet">
 		<!-- Google Tag Manager -->
 		<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
 		new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
@@ -12,60 +13,68 @@
 		</style>
 	</head>
 	<body>
-		<div class="title" align="center"> RED RUM</div>
 		<!-- Google Tag Manager (noscript) -->
 		<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-T7SFS5L"
-		height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-		<!-- End Google Tag Manager (noscript) -->
-		<div class="dropdown floor">
-		  <button onclick="toggleDropdown()" class="dropbtn">Select Floor</button>
-		  <div id="myDropdown"	 class="dropdown-content">
-		  	<!-- Note that these options are referenced in the Javascript! Change that if we move to multiple dropdowns. -->
-			  <a id= "rv1_1" class="dropdown-option">RV1 First Floor</a>
-			  <a id= "rv1_2" class="dropdown-option">RV1 Second Floor</a>
-			  <a id= "rv2_1" class="dropdown-option">RV2 First Floor</a>
-			  <a id= "rv2_2" class="dropdown-option">RV2 Second Floor</a>
-			  <a id= "rv3_0b" class="dropdown-option">RV3 Basement</a>
-			  <a id= "rv3_0g" class="dropdown-option">RV3 Ground Floor</a>
-			  <a id= "rv3_1" class="dropdown-option">RV3 First Floor</a>
-			  <a id= "rv3_2" class="dropdown-option">RV3 Second Floor</a>
-			  <a id= "rv3_3" class="dropdown-option">RV3 Third Floor</a>
-			  <a id= "rv4_1" class="dropdown-option">RV4 First Floor</a>
-			  <a id= "rv4_2" class="dropdown-option">RV4 Second Floor</a>
-			  <a id= "rv5_1" class="dropdown-option">RV5 First Floor</a>
-			  <a id= "rv5_2" class="dropdown-option">RV5 Second Floor</a>
-			  <a id= "rv5_3" class="dropdown-option">RV5 Third Floor</a>
-			  <a id= "rv5_4" class="dropdown-option">RV5 Fourth Floor</a>
-			  <a id= "rv5_5" class="dropdown-option">RV5 Fifth Floor</a>
-			  <a id= "rv5_6" class="dropdown-option">RV5 Sixth Floor</a>
-			  <a id= "rv6_1" class="dropdown-option">RV6 First Floor</a>
-			  <a id= "rv6_2" class="dropdown-option">RV6 Second Floor</a>
-		  </div>
-		</div>
-		<p align="center"> Stop wasting time looking for meeting rooms. Click the map to create a shareable location URL. </br></p>
-		<input id="share" name="Share Location URL" value="url here" style="width:1200;background-color:pink" align="center">
-		<img id="mapImage" src="./img/rv1_1.jpg" onclick="mapClick(event)">
-		<!-- Marker made by Gregor Cresnar (https://www.flaticon.com/authors/gregor-cresnar) from www.flaticon.com -->
-		<img id="marker" src="./img/star2.png" onclick="mapClick(event)">
-		<script src="./main.js"></script>
-		<!-- Room Search V1 -->
-		<div id="search-container" onfocusin="showRooms()" onfocusout="hideRooms()">
-			<p>Search: </p>
-			<input id="search" style="width:300px"type="text" oninput="searchRooms(this.value)">
+			height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+			<!-- End Google Tag Manager (noscript) -->
+		<div class="title" align="center">RED RUM</div>		
+		<p class="subtitle" align="center">Stop wasting time looking for meeting rooms.</p>
+
+		<div class="search-container" id="search-container" onfocusin="showRooms()" onfocusout="hideRooms()">
+			<input id="search" class="searchbox" type="text" oninput="searchRooms(this.value)" placeholder="Search">
 			<button id="room-locator" onclick="startRoomLocator()" style="display:none;">
 				Set Locations
 			</button>
 			<button id="room-logger" onclick="logRoomLocations()" style="display:none;">
 				Log Locations
 			</button>
-			<p id="demo">Select a room by clicking the text:</p>
-			<ol id="demo-2"><!-- class="no-show" --> 
-			</ol>
+			<div id="results" class="results">
+				<ul id="demo-2"><!-- class="no-show" --> 
+				</ul>
+			</div>
 			<script src="./searchRooms2.js"></script>
 		</div>
-		<p></br></br></br></br></br></br></p>
+		<div class="map">
+			<div class="map__img">
+				<img id="marker" src="./img/star2.png" onclick="mapClick(event)">
+				<img id="mapImage" src="./img/rv1_1.jpg" onclick="mapClick(event)">
+			</div>
+			<div class="map__annotation">
+				<p> Click the map to create a shareable location URL. </br></p>
+				<input id="share" name="Share Location URL" value="url here" class="share-url">
+				<div class="dropdown floor">
+					
+						<button onclick="toggleDropdown()" class="dropbtn">Select Floor</button>
+						<div id="myDropdown"	 class="dropdown-content">
+							<!-- Note that these options are referenced in the Javascript! Change that if we move to multiple dropdowns. -->
+							<a id= "rv1_1" class="dropdown-option">RV1 First Floor</a>
+							<a id= "rv1_2" class="dropdown-option">RV1 Second Floor</a>
+							<a id= "rv2_1" class="dropdown-option">RV2 First Floor</a>
+							<a id= "rv2_2" class="dropdown-option">RV2 Second Floor</a>
+							<a id= "rv3_0b" class="dropdown-option">RV3 Basement</a>
+							<a id= "rv3_0g" class="dropdown-option">RV3 Ground Floor</a>
+							<a id= "rv3_1" class="dropdown-option">RV3 First Floor</a>
+							<a id= "rv3_2" class="dropdown-option">RV3 Second Floor</a>
+							<a id= "rv3_3" class="dropdown-option">RV3 Third Floor</a>
+							<a id= "rv4_1" class="dropdown-option">RV4 First Floor</a>
+							<a id= "rv4_2" class="dropdown-option">RV4 Second Floor</a>
+							<a id= "rv5_1" class="dropdown-option">RV5 First Floor</a>
+							<a id= "rv5_2" class="dropdown-option">RV5 Second Floor</a>
+							<a id= "rv5_3" class="dropdown-option">RV5 Third Floor</a>
+							<a id= "rv5_4" class="dropdown-option">RV5 Fourth Floor</a>
+							<a id= "rv5_5" class="dropdown-option">RV5 Fifth Floor</a>
+							<a id= "rv5_6" class="dropdown-option">RV5 Sixth Floor</a>
+							<a id= "rv6_1" class="dropdown-option">RV6 First Floor</a>
+							<a id= "rv6_2" class="dropdown-option">RV6 Second Floor</a>
+						</div>
+					</div>
+			</div>
+			
+		</div>
+		<!-- Marker made by Gregor Cresnar (https://www.flaticon.com/authors/gregor-cresnar) from www.flaticon.com -->	
+		<script src="./main.js"></script>
 	</body>
 	<footer>
-		
+		<p>Created by Matt Ferry and others</p>
 	</footer>
 </html>

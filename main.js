@@ -1,6 +1,7 @@
 // Get map options:
 var dropdownOptions =  document.getElementsByClassName("dropdown-option");
 
+document.getElementById('search').focus();
 // Change display based on URL
 changeFromURL(dropdownOptions);
 

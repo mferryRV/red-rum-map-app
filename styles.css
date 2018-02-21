@@ -1,3 +1,16 @@
+* {
+    box-sizing: border-box;
+}
+
+html, body {
+    margin: 0;
+    padding:0;
+}
+
+body { 
+    /* font-family: 'Roboto', sans-serif; */
+    font-family: 'Open Sans', sans-serif;
+}
 /* Dropdown Button */
 .dropbtn {
     background-color: #4CAF50;
@@ -66,6 +79,82 @@
         }
 }
 
-#title {
+.title {
     text-align: center;
+    font-family: 'Hanalei Fill', cursive;
+    font-size: 92px;
+}
+
+.subtitle { 
+    font-family: 'Open Sans';
+    font-style: italic;
+    font-size: 24px;
+}
+
+.results {
+    background: #fefefe;
+    box-shadow: 0px 1px 1px 0px #555555;
+    display: none;
+    position: absolute;
+    width: 600px;
+    z-index: 1;
+}
+
+.results.active {
+    display: block;
+}
+
+.results ul {
+    list-style-type: none;
+    padding-left: 0;
+}
+
+.results li {
+    padding: 5px;
+}
+
+.results li:hover {
+    background: #e4e4e4;
+}
+
+.searchbox {
+    font-size: 18px;
+    padding: 14px 10px;
+    width: 600px;
+}
+
+.search-container {
+    margin: 0 auto 40px;
+    width: 600px; 
+}
+
+.map {
+    margin: 0 auto;
+    position: relative;
+    width: 1200px;
+}
+
+.share-url {
+    background-color: #fffde8;
+    border: 1px solid #a5a5a5;
+    font-size: 13px;
+    padding: 10px;
+    width: 610px;
+}
+
+.column {
+    /* width: 50%;
+    position: relative; */
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: 128px 420px 500px;
+    grid-gap: 10px;
+}
+
+footer {
+    text-align: center;
+    color: #8e8e8e;
+    margin-top: 150px;
 }
