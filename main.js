@@ -96,10 +96,11 @@ function createSharedURL() {
 		},document.location.href.split('?')[0]);
 		document.getElementById('share').value = shareUrl;
 		try {
-			window.history.pushState('','',shareUrl.split('?')[1]);
+			window.history.pushState('','','?'+shareUrl.split('?')[1]);
 		} catch(e) {
 			console.log(e);
 		}
+		dataLayer.push({'event': 'locationUpdated', 'location': document.params);
 }
 
 function updateSharedURL(type, locationObj) {
