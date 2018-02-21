@@ -33,53 +33,48 @@
 				</ul>
 			</div>
 			<script src="./searchRooms2.js"></script>
-		</div>		
-		<div class="grid">
-			<div class="column">
+		</div>
+		<div class="map">
+			<div class="map__img">
+				<img id="marker" src="./img/star2.png" onclick="mapClick(event)">
+				<img id="mapImage" src="./img/rv1_1.jpg" onclick="mapClick(event)">
+			</div>
+			<div class="map__annotation">
+				<p> Click the map to create a shareable location URL. </br></p>
+				<input id="share" name="Share Location URL" value="url here" class="share-url">
 				<div class="dropdown floor">
 					
-					<button onclick="toggleDropdown()" class="dropbtn">Select Floor</button>
-					<div id="myDropdown"	 class="dropdown-content">
-						<!-- Note that these options are referenced in the Javascript! Change that if we move to multiple dropdowns. -->
-						<a id= "rv1_1" class="dropdown-option">RV1 First Floor</a>
-						<a id= "rv1_2" class="dropdown-option">RV1 Second Floor</a>
-						<a id= "rv2_1" class="dropdown-option">RV2 First Floor</a>
-						<a id= "rv2_2" class="dropdown-option">RV2 Second Floor</a>
-						<a id= "rv3_0b" class="dropdown-option">RV3 Basement</a>
-						<a id= "rv3_0g" class="dropdown-option">RV3 Ground Floor</a>
-						<a id= "rv3_1" class="dropdown-option">RV3 First Floor</a>
-						<a id= "rv3_2" class="dropdown-option">RV3 Second Floor</a>
-						<a id= "rv3_3" class="dropdown-option">RV3 Third Floor</a>
-						<a id= "rv4_1" class="dropdown-option">RV4 First Floor</a>
-						<a id= "rv4_2" class="dropdown-option">RV4 Second Floor</a>
-						<a id= "rv5_1" class="dropdown-option">RV5 First Floor</a>
-						<a id= "rv5_2" class="dropdown-option">RV5 Second Floor</a>
-						<a id= "rv5_3" class="dropdown-option">RV5 Third Floor</a>
-						<a id= "rv5_4" class="dropdown-option">RV5 Fourth Floor</a>
-						<a id= "rv5_5" class="dropdown-option">RV5 Fifth Floor</a>
-						<a id= "rv5_6" class="dropdown-option">RV5 Sixth Floor</a>
-						<a id= "rv6_1" class="dropdown-option">RV6 First Floor</a>
-						<a id= "rv6_2" class="dropdown-option">RV6 Second Floor</a>
+						<button onclick="toggleDropdown()" class="dropbtn">Select Floor</button>
+						<div id="myDropdown"	 class="dropdown-content">
+							<!-- Note that these options are referenced in the Javascript! Change that if we move to multiple dropdowns. -->
+							<a id= "rv1_1" class="dropdown-option">RV1 First Floor</a>
+							<a id= "rv1_2" class="dropdown-option">RV1 Second Floor</a>
+							<a id= "rv2_1" class="dropdown-option">RV2 First Floor</a>
+							<a id= "rv2_2" class="dropdown-option">RV2 Second Floor</a>
+							<a id= "rv3_0b" class="dropdown-option">RV3 Basement</a>
+							<a id= "rv3_0g" class="dropdown-option">RV3 Ground Floor</a>
+							<a id= "rv3_1" class="dropdown-option">RV3 First Floor</a>
+							<a id= "rv3_2" class="dropdown-option">RV3 Second Floor</a>
+							<a id= "rv3_3" class="dropdown-option">RV3 Third Floor</a>
+							<a id= "rv4_1" class="dropdown-option">RV4 First Floor</a>
+							<a id= "rv4_2" class="dropdown-option">RV4 Second Floor</a>
+							<a id= "rv5_1" class="dropdown-option">RV5 First Floor</a>
+							<a id= "rv5_2" class="dropdown-option">RV5 Second Floor</a>
+							<a id= "rv5_3" class="dropdown-option">RV5 Third Floor</a>
+							<a id= "rv5_4" class="dropdown-option">RV5 Fourth Floor</a>
+							<a id= "rv5_5" class="dropdown-option">RV5 Fifth Floor</a>
+							<a id= "rv5_6" class="dropdown-option">RV5 Sixth Floor</a>
+							<a id= "rv6_1" class="dropdown-option">RV6 First Floor</a>
+							<a id= "rv6_2" class="dropdown-option">RV6 Second Floor</a>
+						</div>
 					</div>
-				</div>
 			</div>
-			<div class="column">
-				<p> Click the map to create a shareable location URL. </br></p>
-			</div>
-			<div class="column">
-				<input id="share" name="Share Location URL" value="url here" class="share-url">
-			</div>
-		</div>
-		
-		
-		<div class="map">
-			<img id="marker" src="./img/star2.png" onclick="mapClick(event)">
-			<img id="mapImage" src="./img/rv1_1.jpg" onclick="mapClick(event)">
+			
 		</div>
 		<!-- Marker made by Gregor Cresnar (https://www.flaticon.com/authors/gregor-cresnar) from www.flaticon.com -->	
 		<script src="./main.js"></script>
 	</body>
 	<footer>
-		
+		<p>Created by Matt Ferry and others</p>
 	</footer>
 </html>

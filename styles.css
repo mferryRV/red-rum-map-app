@@ -124,7 +124,7 @@ body {
 }
 
 .search-container {
-    margin: 0 auto;
+    margin: 0 auto 40px;
     width: 600px; 
 }
 
@@ -151,4 +151,10 @@ body {
     display: grid;
     grid-template-columns: 128px 420px 500px;
     grid-gap: 10px;
+}
+
+footer {
+    text-align: center;
+    color: #8e8e8e;
+    margin-top: 150px;
 }
