@@ -95,6 +95,11 @@ function createSharedURL() {
 				return url + (url.indexOf('?') === -1 ? '?' : '&') + parameter + "=" + document.params[parameter]
 		},document.location.href.split('?')[0]);
 		document.getElementById('share').value = shareUrl;
+		try {
+			window.history.pushState('','',shareUrl.split('?')[1]);
+		} catch(e) {
+			console.log(e);
+		}
 }
 
 function updateSharedURL(type, locationObj) {
