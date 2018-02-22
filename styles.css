@@ -63,10 +63,12 @@ body {
 }
 
 /* Make that marker stand out more. */
-#marker {
+.locator {
     display: none;
     position: absolute;
-    margin: -32px 0 0 -32px; 
+}
+
+.locator__icon {
     -webkit-animation: rotation 2s infinite linear;
 }
 
@@ -132,6 +134,10 @@ body {
     margin: 0 auto;
     position: relative;
     width: 1200px;
+}
+
+.map__img {
+    position: relative;
 }
 
 .share-url {
