@@ -19,7 +19,6 @@ function searchRooms(query) {
 						return all + li
 				},"");
 			} else {
-				console.log('asdfasdf', document.getElementById("demo-2"));
 				document.getElementById("demo-2").innerHTML = '<li class="caution">No Results Found</li>';
 			}
 
@@ -72,7 +71,7 @@ function startRoomLocator() {
 }
 
 function locateRoom() {
-		console.log(JSON.stringify(document.params));
+		// console.log(JSON.stringify(document.params));
 		// Store current marker location
 		document.roomLocations[document.roomIndex].x = document.params.x,
 		document.roomLocations[document.roomIndex].y = document.params.y,

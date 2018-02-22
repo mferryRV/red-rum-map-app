@@ -66,8 +66,14 @@ function changeFromDropdown(id) {
 
 // Add marker when the map is clicked
 function mapClick(e) {
-	var clickLocation = {"x": e.pageX, "y": e.pageY};
-	// Set a marker at the click location
+
+	let mapDimension = e.target.getBoundingClientRect();
+
+	let clickLocation = {
+		x: e.clientX - mapDimension.left,
+		y: e.clientY - mapDimension.top
+	};
+
   setMarker(clickLocation);
   // Update the sharing URL with the click location
   updateSharedURL("upsert", clickLocation);
@@ -76,8 +82,8 @@ function mapClick(e) {
 function setMarker(clickLocation) {
 	with(document.getElementById('marker'))
   {
-    style.left = clickLocation.x - 70;
-    style.top = clickLocation.y - 300;
+    style.left = clickLocation.x - 35;
+		style.top = clickLocation.y - 25;
     style.display = 'block';
   }
 }
